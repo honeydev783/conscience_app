@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+      --background: 0 0% 100%;
+--foreground: 20 14.3% 4.1%;
+--muted: 60 4.8% 95.9%;
+--muted-foreground: 25 5.3% 44.7%;
+--popover: 0 0% 100%;
+--popover-foreground: 20 14.3% 4.1%;
+--card: 0 0% 100%;
+--card-foreground: 20 14.3% 4.1%;
+--border: 20 5.9% 90%;
+--input: 20 5.9% 90%;
+--primary: 207 90% 54%;
+--primary-foreground: 211 100% 99%;
+--secondary: 60 4.8% 95.9%;
+--secondary-foreground: 24 9.8% 10%;
+--accent: 60 4.8% 95.9%;
+--accent-foreground: 24 9.8% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 60 9.1% 97.8%;
+--ring: 20 14.3% 4.1%;
+--radius: 0.5rem;
+  }
+  .dark {
+      --background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--primary: 207 90% 54%;
+--primary-foreground: 211 100% 99%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--ring: 240 4.9% 83.9%;
+--radius: 0.5rem;
+  }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom CSS for swipe functionality */
+.swipe-card {
+  transition: transform 0.8s ease;
+  touch-action: pan-y;
+  will-change: transform;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.swipe-right {
+  transform: translateX(120%) rotate(5deg) !important;
+  transition: transform 0.8s ease !important;
+  background-color: rgba(254, 226, 226, 1) !important; /* Red for guilty */
+  border: 2px solid rgba(220, 38, 38, 1) !important;
+}
+
+.swipe-left {
+  transform: translateX(-120%) rotate(-5deg) !important;
+  transition: transform 0.8s ease !important;
+  background-color: rgba(236, 253, 245, 1) !important; /* Green for not guilty */
+  border: 2px solid rgba(16, 185, 129, 1) !important;
+}
+
+/* Custom Switch styles - Green for not guilty, Red for guilty */
+[data-state="unchecked"].switch-guilty {
+  background-color: #10b981 !important; /* Green when unchecked (not guilty) */
+  border-color: #059669 !important;
+  transition: all 0.5s ease;
+}
+
+[data-state="checked"].switch-guilty {
+  background-color: #ef4444 !important; /* Red when checked (guilty) */
+  border-color: #dc2626 !important;
+  transition: all 0.5s ease;
+}
+
+/* Processing indicator animation */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.processing-selection {
+  animation: pulse 1.5s infinite;
+  color: #4f46e5;
+}
+
+/* Sliding button animations */
+@keyframes slideRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes slideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.slider-track {
+  height: 40px;
+  border-radius: 20px;
+  background: linear-gradient(to right, rgba(236, 253, 245, 0.4), rgba(254, 242, 242, 0.4));
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.slider-handle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Extra text color for sins */
+.text-sinRed {
+  color: #B91C1C;
+}
